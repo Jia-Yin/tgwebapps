@@ -37,6 +37,7 @@ export default {
         if (!this.done) {
             console.log("Updated!")
             window.Telegram.WebApp.ready();
+            console.log("initData", window.Telegram.WebApp.initData)
             // window.Telegram.WebApp.expand();
             this.done = true
         }
