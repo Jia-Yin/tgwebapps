@@ -37,7 +37,7 @@ export default {
         if (!this.done) {
             console.log("Updated!")
             window.Telegram.WebApp.ready();
-            window.Telegram.WebApp.expand();
+            // window.Telegram.WebApp.expand();
             this.done = true
         }
         // })
@@ -45,8 +45,7 @@ export default {
     methods: {
         goTelegram() {
             window.Telegram.WebApp.sendData('OK');
-            window.Telegram.WebApp.close();                
-
+            window.Telegram.WebApp.close();
         },
     }
 };
