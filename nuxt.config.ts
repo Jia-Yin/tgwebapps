@@ -3,5 +3,6 @@ export default defineNuxtConfig({
     ssr: false,
     app: {
         baseURL: '/tgwebapps/',
+        buildAssetsDir: '/src/',
     },
 })
