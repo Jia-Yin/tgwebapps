@@ -1,0 +1,5 @@
+npm run generate
+mv .output/public /tmp/docs
+git checkout main
+rm -rf docs
+mv /tmp/docs .
