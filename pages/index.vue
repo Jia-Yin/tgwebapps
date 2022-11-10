@@ -1,16 +1,16 @@
 <template>
     <div>
-        <div v-if="wW>wH">
+        <div v-if="wW>wH" class="hmode">
+            <vue-pdf-embed ref="pdfRef" :source="source1" 
+                :page="page" :height="wH" @rendered="pdfRendered"/>
             <div class="rbtns">
                 <button class=vbtn @click="page=1">Begin</button>
                 <button class=vbtn @click="page=(page>1)?page-1:page">Prev</button>
                 <button class=vbtn @click="page=(page<pageCount)?page+1:page">Next</button>
                 <button class=vbtn @click="goTelegram">Exit</button>
             </div>
-            <vue-pdf-embed ref="pdfRef" :source="source1" 
-                :page="page" :height="wH" @rendered="pdfRendered"/>
         </div>
-        <div v-else>
+        <div v-else class="vmode">
             <vue-pdf-embed ref="pdfRef" :source="source1"
                 :page="page" :width="wW" @rendered="pdfRendered"/>
             <div class="bbtns">
@@ -91,19 +91,21 @@ export default {
 </script>
 
 <style scoped>
+.hmode {
+    display: flex;
+    justify-content: space-around;    
+}
 .rbtns {
-    position: fixed;
-    top: 20px;
-    right: 20px;
     width: 100px;
     z-index: 100;
 }
 .bbtns {
     margin-top: 12px;
+    display: flex;
+    justify-content: space-around;    
 }
 .hbtn {
-    margin-left: 18px;
-    width: 68px;
+    width: 70px;
 }
 .vbtn {
     margin: 12px auto;
