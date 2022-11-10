@@ -1,10 +1,25 @@
 <template>
     <div>
-        <button @click="page -= 1">Prev</button>
-        <button @click="page = 1">Home</button>
-        <button @click="page += 1">Next</button>
-        <button @click="goTelegram">Exit</button>
-        <vue-pdf-embed :source="source1" :page="page" />
+        <div v-if="wW>wH">
+            <div class="rbtns">
+                <button class=vbtn @click="page=1">Begin</button>
+                <button class=vbtn @click="page=(page>1)?page-1:page">Prev</button>
+                <button class=vbtn @click="page=(page<pageCount)?page+1:page">Next</button>
+                <button class=vbtn @click="goTelegram">Exit</button>
+            </div>
+            <vue-pdf-embed ref="pdfRef" :source="source1" 
+                :page="page" :height="wH" @rendered="pdfRendered"/>
+        </div>
+        <div v-else>
+            <vue-pdf-embed ref="pdfRef" :source="source1"
+                :page="page" :width="wW" @rendered="pdfRendered"/>
+            <div class="bbtns">
+                <button class=hbtn @click="page=1">Begin</button>
+                <button class=hbtn @click="page=(page>1)?page-1:page">Prev</button>
+                <button class=hbtn @click="page=(page<pageCount)?page+1:page">Next</button>
+                <button class=hbtn @click="goTelegram">Exit</button>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -29,13 +44,15 @@ export default {
         return {
             source1: "c1.pdf",
             page: 1,
+            pageCount: 1,
+            wH: window.innerHeight-20,
+            wW: window.innerWidth-20,
             done: false,
         };
     },
     updated() {
         // this.$nextTick(() => {
         if (!this.done) {
-            console.log("Updated!")
             window.Telegram.WebApp.ready();
             console.log("initData", window.Telegram.WebApp.initData)
             // window.Telegram.WebApp.expand();
@@ -44,6 +61,10 @@ export default {
         // })
     },
     methods: {
+        pdfRendered() {
+            this.pageCount = this.$refs.pdfRef.pageCount
+            console.log(this.page/this.pageCount)
+        },
         goTelegram() {
             window.Telegram.WebApp.sendData('OK');
             window.Telegram.WebApp.close();
@@ -51,3 +72,23 @@ export default {
     }
 };
 </script>
+
+<style scoped>
+.rbtns {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 100px;
+    z-index: 100;
+}
+.bbtns {
+    margin-top: 12px;
+}
+.hbtn {
+    margin-left: 12px;
+}
+.vbtn {
+    margin: 6px auto;
+    width: 80px;
+}
+</style>
