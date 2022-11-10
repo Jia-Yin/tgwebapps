@@ -66,6 +66,7 @@ export default {
     },
     methods: {
         rotate() {
+            window.Telegram.WebApp.expand()
             this.wH = window.innerHeight-20
             this.wW = window.innerWidth-20
             this.$router.go(0)
@@ -95,9 +96,10 @@ export default {
 }
 .hbtn {
     margin-left: 24px;
+    width: 80px;
 }
 .vbtn {
-    margin: 6px auto;
+    margin: 12px auto;
     width: 80px;
 }
 </style>
