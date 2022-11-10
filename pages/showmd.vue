@@ -36,7 +36,7 @@ const output = computed(() => marked(code))
 <style scoped>
 .output {
   overflow: auto;
-  width: 50%;
+  width: 100%;
   height: 100%;
   box-sizing: border-box;
   padding: 0 20px;
