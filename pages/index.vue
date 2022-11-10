@@ -52,18 +52,26 @@ export default {
     },
     mounted() {
         window.addEventListener("orientationchange", this.rotate)
-    },
-    updated() {
-        // this.$nextTick(() => {
-        if (!this.done) {
-            window.Telegram.WebApp.ready();
-            window.Telegram.WebApp.expand()
-            console.log("initData", window.Telegram.WebApp.initData)
-            // window.Telegram.WebApp.expand();
+        this.$nextTick(() => {
+            if (!this.done) {
+                window.Telegram.WebApp.ready();
+                window.Telegram.WebApp.expand()
+                console.log("initData", window.Telegram.WebApp.initData)
             this.done = true
         }
-        // })
+        })
     },
+    // updated() {
+    //     // this.$nextTick(() => {
+    //     if (!this.done) {
+    //         window.Telegram.WebApp.ready();
+    //         window.Telegram.WebApp.expand()
+    //         console.log("initData", window.Telegram.WebApp.initData)
+    //         // window.Telegram.WebApp.expand();
+    //         this.done = true
+    //     }
+    //     // })
+    // },
     methods: {
         rotate() {
             window.Telegram.WebApp.expand()
@@ -73,7 +81,6 @@ export default {
         },
         pdfRendered() {
             this.pageCount = this.$refs.pdfRef.pageCount
-            console.log(this.page/this.pageCount)
         },
         goTelegram() {
             window.Telegram.WebApp.sendData('OK');
@@ -95,8 +102,8 @@ export default {
     margin-top: 12px;
 }
 .hbtn {
-    margin-left: 24px;
-    width: 80px;
+    margin-left: 18px;
+    width: 68px;
 }
 .vbtn {
     margin: 12px auto;
