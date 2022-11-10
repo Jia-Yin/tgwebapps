@@ -50,10 +50,14 @@ export default {
             done: false,
         };
     },
+    mounted() {
+        window.addEventListener("orientationchange", this.rotate)
+    },
     updated() {
         // this.$nextTick(() => {
         if (!this.done) {
             window.Telegram.WebApp.ready();
+            window.Telegram.WebApp.expand()
             console.log("initData", window.Telegram.WebApp.initData)
             // window.Telegram.WebApp.expand();
             this.done = true
@@ -61,6 +65,11 @@ export default {
         // })
     },
     methods: {
+        rotate() {
+            this.wH = window.innerHeight-20
+            this.wW = window.innerWidth-20
+            this.$router.go(0)
+        },
         pdfRendered() {
             this.pageCount = this.$refs.pdfRef.pageCount
             console.log(this.page/this.pageCount)
@@ -85,7 +94,7 @@ export default {
     margin-top: 12px;
 }
 .hbtn {
-    margin-left: 12px;
+    margin-left: 24px;
 }
 .vbtn {
     margin: 6px auto;
