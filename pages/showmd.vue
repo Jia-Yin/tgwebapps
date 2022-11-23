@@ -34,6 +34,9 @@ const output = computed(() => marked(code))
 </template>
 
 <style scoped>
+body {
+    background: white;
+}
 .output {
   overflow: auto;
   width: 100%;
