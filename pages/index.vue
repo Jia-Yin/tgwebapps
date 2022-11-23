@@ -1,7 +1,7 @@
 <template>
     <div>
         <div v-if="wW>wH" class="hmode">
-            <vue-pdf-embed ref="pdfRef" :source="source1" 
+            <vue-pdf-embed ref="pdfRef" :source="pfile" 
                 :page="page" :height="wH" @rendered="pdfRendered"/>
             <div class="rbtns">
                 <button class=vbtn @click="page=1">Begin</button>
@@ -11,7 +11,7 @@
             </div>
         </div>
         <div v-else class="vmode">
-            <vue-pdf-embed ref="pdfRef" :source="source1"
+            <vue-pdf-embed ref="pdfRef" :source="pfile"
                 :page="page" :width="wW" @rendered="pdfRendered"/>
             <div class="bbtns">
                 <button class=hbtn @click="page=1">Begin</button>
@@ -40,9 +40,11 @@ export default {
         }],
       }
     },
+    computed: {
+        pfile() { return this.$route.query.file ? this.$route.query.file+'.pdf' : 'c1.pdf' },
+    },
     data() {
         return {
-            source1: "c1.pdf",
             page: 1,
             pageCount: 1,
             wH: window.innerHeight-20,
