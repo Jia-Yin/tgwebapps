@@ -12,7 +12,7 @@
             <div class="bbtns">
                 <button class=hbtn @click="page=1">Begin</button>
                 <button class=hbtn @click="page=(page>1)?page-1:page">Prev</button>
-                <button class=hbtn @click="page=(page<pageCount)?page+1:page">Next</button>
+                <button class=hbtn @click="goNext">Next</button>
                 <button class=hbtn @click="goTelegram">Exit</button>
             </div>
         </div>
