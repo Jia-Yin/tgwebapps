@@ -1,8 +1,6 @@
 <template>
     <div>
         <div v-if="wW>wH" class="hmode">
-            <vue-pdf-embed ref="pdfRef" :source="source1" 
-                :page="page" :height="wH" @rendered="pdfRendered"/>
             <div class="rbtns">
                 <button class=vbtn @click="page=1">Begin</button>
                 <button class=vbtn @click="page=(page>1)?page-1:page">Prev</button>
@@ -11,8 +9,6 @@
             </div>
         </div>
         <div v-else class="vmode">
-            <vue-pdf-embed ref="pdfRef" :source="source1"
-                :page="page" :width="wW" @rendered="pdfRendered"/>
             <div class="bbtns">
                 <button class=hbtn @click="page=1">Begin</button>
                 <button class=hbtn @click="page=(page>1)?page-1:page">Prev</button>
