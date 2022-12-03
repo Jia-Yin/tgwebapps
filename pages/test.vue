@@ -26,6 +26,9 @@
             WebAppUser = {{dtest.WebAppUser}}<br>
             WebAppChat = {{dtest.WebAppChat}}<br>
         </div>
+        <div v-else>
+            WebApp = None
+        </div>
     </div>
 </template>
 
@@ -74,7 +77,7 @@ export default {
     methods: {
         goNext() {
             if (this.page<this.pageCount) this.page += 1
-            if (!this.done) {
+            if (true) {
                 let tg = window.Telegram
                 console.log("TG", tg)
                 let webapp = tg.WebApp
