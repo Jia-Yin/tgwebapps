@@ -6,7 +6,7 @@
             <div class="rbtns">
                 <button class=vbtn @click="page=1">Begin</button>
                 <button class=vbtn @click="page=(page>1)?page-1:page">Prev</button>
-                <button class=vbtn @click="page=(page<pageCount)?page+1:page">Next</button>
+                <button class=vbtn @click="goNext">Next</button>
                 <button class=vbtn @click="goTelegram">Exit</button>
             </div>
         </div>
@@ -20,7 +20,7 @@
                 <button class=hbtn @click="goTelegram">Exit</button>
             </div>
         </div>
-        {{dtest}}
+        initData = {{dtest}}
     </div>
 </template>
 
@@ -47,21 +47,13 @@ export default {
             source1: "c1.pdf",
             page: 1,
             pageCount: 1,
-            wH: window.innerHeight-20,
-            wW: window.innerWidth-20,
+            wH: window.innerHeight-200,
+            wW: window.innerWidth-200,
             done: false,
         };
     },
     mounted() {
         window.addEventListener("orientationchange", this.rotate)
-        this.$nextTick(() => {
-            if (!this.done) {
-                window.Telegram.WebApp.ready();
-                window.Telegram.WebApp.expand()
-                console.log("initData", window.Telegram.WebApp.initData)
-            this.done = true
-        }
-        })
     },
     // updated() {
     //     // this.$nextTick(() => {
@@ -75,6 +67,21 @@ export default {
     //     // })
     // },
     methods: {
+        goNext() {
+            if (this.page<this.pageCount) this.page += 1
+            if (!this.done) {
+                let tg = window.Telegram
+                console.log("TG", tg)
+                let webapp = tg.WebApp
+                webapp.ready();
+                webapp.expand()
+                webapp.BackButton.show()
+                webapp.MainButton.show()
+                console.log("initData", webapp.initData)
+                this.dtest = webapp.initData
+                this.done = true
+            }
+        },
         rotate() {
             window.Telegram.WebApp.expand()
             this.wH = window.innerHeight-20
@@ -86,7 +93,6 @@ export default {
         },
         goTelegram() {
             console.log("Telegram", window.Telegram)
-            this.dtest = window.Telegram.WebAppInitData
             // window.Telegram
             // window.Telegram.WebApp.sendData('OK');
             // window.Telegram.WebApp.close();
