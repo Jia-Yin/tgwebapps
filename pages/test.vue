@@ -20,6 +20,7 @@
                 <button class=hbtn @click="goTelegram">Exit</button>
             </div>
         </div>
+        DEBUG:
         <div v-if="dtest">
             WebAppInitData = {{dtest.WebAppInitData}}<br>
             WebAppUser = {{dtest.WebAppUser}}<br>
