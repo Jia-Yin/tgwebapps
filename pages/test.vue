@@ -20,7 +20,11 @@
                 <button class=hbtn @click="goTelegram">Exit</button>
             </div>
         </div>
-        initData = {{dtest}}
+        <div v-if="dtest">
+            WebAppInitData = {{dtest.WebAppInitData}}<br>
+            WebAppUser = {{dtest.WebAppUser}}<br>
+            WebAppChat = {{dtest.WebAppChat}}<br>
+        </div>
     </div>
 </template>
 
@@ -78,7 +82,7 @@ export default {
                 webapp.BackButton.show()
                 webapp.MainButton.show()
                 console.log("initData", webapp.initData)
-                this.dtest = webapp.initData
+                this.dtest = webapp
                 this.done = true
             }
         },
