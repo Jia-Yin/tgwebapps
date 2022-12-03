@@ -44,7 +44,7 @@ export default {
     data() {
         return {
             dtest: null,
-            source1: "/Arduino.pdf",
+            source1: "/tgwebapps/Arduino.pdf",
             page: 1,
             pageCount: 1,
             wH: window.innerHeight-200,
