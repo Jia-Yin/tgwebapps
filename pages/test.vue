@@ -81,19 +81,19 @@ export default {
                 let tg = window.Telegram
                 console.log("TG", tg)
                 let webapp = tg.WebApp
-                webapp.ready();
-                webapp.expand()
-                webapp.BackButton.show()
-                webapp.MainButton.show()
+                window.Telegram.WebApp.ready();
+                window.Telegram.WebApp.expand()
+                window.Telegram.WebApp.BackButton.show()
+                window.Telegram.WebApp.MainButton.show()
                 console.log("initData", webapp.initData)
-                this.dtest = webapp
+                this.dtest = window.Telegram.WebApp
                 this.done = true
             }
         },
         rotate() {
             window.Telegram.WebApp.expand()
-            this.wH = window.innerHeight-20
-            this.wW = window.innerWidth-20
+            this.wH = window.innerHeight-100
+            this.wW = window.innerWidth-100
             this.$router.go(0)
         },
         pdfRendered() {
