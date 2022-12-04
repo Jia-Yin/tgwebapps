@@ -51,7 +51,7 @@ export default {
             let lstr = window.location.hash.toString()
             const re = /query_id=(.*)&user/;
             const myArray = lstr.match(re);
-            return myArray
+            return myArray[1]
         }
     },
     data() {
@@ -104,11 +104,14 @@ export default {
         pdfRendered() {
             this.pageCount = this.$refs.pdfRef.pageCount
         },
-        goTelegram() {
-            console.log("Telegram", window.Telegram)
-            // window.Telegram
-            // window.Telegram.WebApp.sendData('OK');
-            // window.Telegram.WebApp.close();
+        async goTelegram() {
+            let url = 'https://api.telegram.org/1062787587:AAEZkp7S-QrOPHwRmnTtaWfae_9FwFwu3mQ/answerWebAppQuery'
+            let sid = 'web_app_query_id=' + this.query_id
+            let res = 'result=%7B%22type%22%3A%22article%22%2C%22id%22%3A%22AID%22%2C%22title%22%3A%22Title%22%2C%22input_message_content%22%3A%7B%22message_text%22%3A%22CONTENT%22%7D%7D'
+            res = res.replace('CONTENT', 'RESULT')
+            let all = '?' + sid + '&' + res
+            console.log("URL", url+all)
+            await $fetch(url + all)
         },
     }
 };
