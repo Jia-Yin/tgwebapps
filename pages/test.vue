@@ -41,7 +41,7 @@ export default {
     head() {
       return {
         script: [{
-            src: "https://telegram.org/js/telegram-web-app.js"
+            src: "https://telegram.org/js/telegram-web-app.js?1"
         }],
       }
     },
