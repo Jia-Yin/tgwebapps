@@ -252,6 +252,8 @@
             el.innerHTML = 'Show Main Button';
         } else {
             mainButton.show();
+            mainButton.setText('CLOSE WEBVIEW');
+            mainButton.onClick(function(){ webviewClose(); });
             el.innerHTML = 'Hide Main Button';
         }
     }

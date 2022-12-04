@@ -18,9 +18,10 @@
         </div>
         DEBUG:
         <div v-if="dtest">
-            WebAppInitData = {{dtest.WebAppInitData}}<br>
-            WebAppUser = {{dtest.WebAppUser}}<br>
-            WebAppChat = {{dtest.WebAppChat}}<br>
+            queryID = {{query_id}}<br>
+            WebAppInitData = {{dtest.initData}}<br>
+            WebAppInitDataUnsafe = {{dtest.initDataUnsafe}}<br>
+            WebAppChat = {{dtest.chat}}<br>
         </div>
         <div v-else>
             WebApp = None
@@ -44,6 +45,14 @@ export default {
             src: "https://telegram.org/js/telegram-web-app.js?1"
         }],
       }
+    },
+    computed: {
+        query_id() {
+            let lstr = window.location.hash.toString()
+            const re = /query_id=(.*)&user/;
+            const myArray = lstr.match(re);
+            return myArray
+        }
     },
     data() {
         return {
