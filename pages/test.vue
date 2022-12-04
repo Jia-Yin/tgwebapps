@@ -51,7 +51,8 @@ export default {
             let lstr = window.location.hash.toString()
             const re = /query_id=(.*)&user/;
             const myArray = lstr.match(re);
-            return myArray[1]
+            if (myArray) return myArray[1]
+            else return "None"
         }
     },
     data() {
@@ -84,13 +85,14 @@ export default {
             if (this.page<this.pageCount) this.page += 1
             if (true) {
                 let tg = window.Telegram
-                console.log("TG", tg)
                 let webapp = tg.WebApp
                 window.Telegram.WebApp.ready();
                 window.Telegram.WebApp.expand()
-                window.Telegram.WebApp.BackButton.show()
-                window.Telegram.WebApp.MainButton.show()
-                console.log("initData", webapp.initData)
+                // window.Telegram.WebApp.BackButton.show()
+                const mainButton = window.Telegram.WebApp.MainButton;
+                mainButton.show();
+                mainButton.setText('繼續');
+                mainButton.onClick(this.goTelegram);
                 this.dtest = window.Telegram.WebApp
                 this.done = true
             }
