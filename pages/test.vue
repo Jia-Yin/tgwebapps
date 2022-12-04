@@ -107,11 +107,15 @@ export default {
         async goTelegram() {
             let url = 'https://api.telegram.org/bot1062787587:AAEZkp7S-QrOPHwRmnTtaWfae_9FwFwu3mQ/answerWebAppQuery'
             let sid = 'web_app_query_id=' + this.query_id
+            // let sid = 'web_app_query_id=AAEQalw7AAAAABBqXDu4On2u'
             let res = 'result=%7B%22type%22%3A%22article%22%2C%22id%22%3A%22AID%22%2C%22title%22%3A%22Title%22%2C%22input_message_content%22%3A%7B%22message_text%22%3A%22CONTENT%22%7D%7D'
             res = res.replace('CONTENT', 'RESULT')
             let all = '?' + sid + '&' + res
             console.log("URL", url+all)
-            await $fetch(url + all)
+            let myurl = url + all
+            // myurl = "https://api.telegram.org/bot1062787587:AAEZkp7S-QrOPHwRmnTtaWfae_9FwFwu3mQ/answerWebAppQuery?web_app_query_id=AAEQalw7AAAAABBqXDuwFrF8&result=%7B%22type%22%3A%22article%22%2C%22id%22%3A%22test12345%22%2C%22title%22%3A%22Test12345%22%2C%22input_message_content%22%3A%7B%22message_text%22%3A%22TEST%22%7D%7D"
+            console.log("myurl", myurl)
+            await fetch(myurl)
         },
     }
 };
