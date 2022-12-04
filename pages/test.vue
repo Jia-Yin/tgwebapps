@@ -91,7 +91,7 @@ export default {
                 // window.Telegram.WebApp.BackButton.show()
                 const mainButton = window.Telegram.WebApp.MainButton;
                 mainButton.show();
-                mainButton.setText('繼續');
+                mainButton.setText('回聊天室');
                 mainButton.onClick(this.goTelegram);
                 this.dtest = window.Telegram.WebApp
                 this.done = true
