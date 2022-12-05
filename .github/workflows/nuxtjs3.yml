@@ -25,7 +25,6 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@v3
         with:
-          cache: 'pnpm'
           node-version: 16
       
       - name: Cache node_modules
@@ -34,11 +33,11 @@ jobs:
         with:
           path: |
             node_modules
-          key: modules-${{ hashFiles('pnpm-lock.yaml') }}
+          key: modules-${{ hashFiles('package-lock.json') }}
 
       - name: Install Dependencies
         if: steps.cache-node-modules.outputs.cache-hit != 'true'
-        run: pnpm i
+        run: npm i
 
   generate:
     name: Nuxt generate
