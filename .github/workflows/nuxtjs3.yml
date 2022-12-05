@@ -18,14 +18,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - uses: pnpm/action-setup@v2.2.4
-        with:
-          version: 7
-
       - name: Set up Node
         uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 16.18
       
       - name: Cache node_modules
         uses: actions/cache@v3
@@ -48,25 +44,20 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - uses: pnpm/action-setup@v2.2.4
-        with:
-          version: 7
-
       - name: Set up Node
         uses: actions/setup-node@v3
         with:
-          cache: 'pnpm'
-          node-version: 16
+          node-version: 16.18
       
       - name: Cache node_modules
         uses: actions/cache@v3
         with:
           path: |
             node_modules
-          key: modules-${{ hashFiles('pnpm-lock.yaml') }}
+          key: modules-${{ hashFiles('package-lock.json') }}
      
       - name: Nuxt Generate
-        run: pnpm generate
+        run: npm run generate
   
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
