@@ -41,7 +41,7 @@ export default {
       }
     },
     computed: {
-        pfile() { return this.$route.query.file ? this.$route.query.file+'.pdf' : 'c1.pdf' },
+        pfile() { return this.$route.query.file ? this.$route.query.file+'.pdf' : 'CherryTrees.pdf' },
     },
     data() {
         return {
