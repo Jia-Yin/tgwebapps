@@ -13,7 +13,15 @@ const re = /query_id=(.*)&user/;
 const myArray = lstr.match(re);
 const qid = myArray ? myArray[1] : "None"
 const file = route.query.f ? route.query.f : 'c1.pdf'
-const tk = route.query.tk ? route.query.tk : 'None'
+let token = route.query.tk ? route.query.tk : 'MTA2Mjc4NzU4NyUzQUFBRVprcDdTLVFyT1BId1JtblR0YVdmYWVfOUZ3Rnd1M21R'
+try {
+    let qstr = window.atob(token)
+    token = window.decodeURIComponent(qstr)
+} catch (e) {
+    token = ""
+    console.log("Error", e)
+}
+const tk = token
 
 onMounted(() => {
     setTimeout(() => {
