@@ -3,6 +3,7 @@ import VuePdfEmbed from "vue-pdf-embed"
 import { onMounted, ref } from "vue"
 const router = useRouter()
 const route = useRoute()
+const config = useRuntimeConfig()
 let Script = document.createElement("script")
 Script.setAttribute("src", "https://telegram.org/js/telegram-web-app.js")
 document.head.insertBefore(Script, document.head.firstChild)
@@ -12,7 +13,10 @@ let lstr = window.location.hash.toString()
 const re = /query_id=(.*)&user/;
 const myArray = lstr.match(re);
 const qid = myArray ? myArray[1] : "None"
-const file = route.query.f ? route.query.f : 'c1.pdf'
+const baseURL = config.app.baseURL
+console.log("baseURL", baseURL)
+const file = baseURL+(route.query.f ? route.query.f : 'c1.pdf')
+console.log("FILE", file)
 let token = route.query.tk ? route.query.tk : 'MTA2Mjc4NzU4NyUzQUFBRVprcDdTLVFyT1BId1JtblR0YVdmYWVfOUZ3Rnd1M21R'
 try {
     let qstr = window.atob(token)
@@ -31,7 +35,6 @@ onMounted(() => {
     setTimeout(() => {
         window.Telegram.WebApp.ready()
         window.Telegram.WebApp.expand()
-        console.log("APP", app)
     }, 500)
     
 })
