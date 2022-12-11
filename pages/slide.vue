@@ -12,7 +12,7 @@ let lstr = window.location.hash.toString()
 const re = /query_id=(.*)&user/;
 const myArray = lstr.match(re);
 const qid = myArray ? myArray[1] : "None"
-const file = route.query.f ? route.query.f : '/c1.pdf'
+const file = route.query.f ? route.query.f : 'c1.pdf'
 let token = route.query.tk ? route.query.tk : 'MTA2Mjc4NzU4NyUzQUFBRVprcDdTLVFyT1BId1JtblR0YVdmYWVfOUZ3Rnd1M21R'
 try {
     let qstr = window.atob(token)
