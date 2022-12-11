@@ -31,6 +31,7 @@ onMounted(() => {
     setTimeout(() => {
         window.Telegram.WebApp.ready()
         window.Telegram.WebApp.expand()
+        console.log("APP", app)
     }, 500)
     
 })
