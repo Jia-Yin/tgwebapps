@@ -35,7 +35,6 @@ const pheight = ref(600)
 const pwidth = ref(300)
 const pdfRef = ref()
 const pdone = ref(false)
-const phmode = ref(false)
 function pdfRendered() {
     if (!pdone.value) {
         pages.value = pdfRef.value.pageCount
@@ -46,14 +45,11 @@ function rotate() {
     pwidth.value = window.innerWidth
     pheight.value = window.innerHeight
     if (pwidth.value > pheight.value) {
-        console.log("P=TRUE")
-        phmode.value = true
         window.Telegram.WebApp.MainButton.show()
     } else {
-        console.log("P=FALSE")
-        phmode.value = false
         window.Telegram.WebApp.MainButton.hide()
     }
+    router.go(0)
 }
 
 const goExit = (async () => {
@@ -67,6 +63,8 @@ const goExit = (async () => {
 })
 
 onMounted(() => {
+    pwidth.value = window.innerWidth
+    pheight.value = window.innerHeight
     setTimeout(() => {
         window.Telegram.WebApp.ready()
         window.Telegram.WebApp.expand()
@@ -74,8 +72,6 @@ onMounted(() => {
         window.Telegram.WebApp.MainButton.setText('返回')
         window.Telegram.WebApp.MainButton.onClick(goExit)
         window.addEventListener("orientationchange", rotate)
-        pwidth.value = window.innerWidth
-        pheight.value = window.innerHeight
     }, 500)
 })
 </script>
