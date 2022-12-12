@@ -34,12 +34,8 @@ const pages = ref(1)
 const pheight = ref(600)
 const pwidth = ref(300)
 const pdfRef = ref()
-const pdone = ref(false)
 function pdfRendered() {
-    if (!pdone.value) {
-        pages.value = pdfRef.value.pageCount
-        pdone.value = true
-    }
+    pages.value = pdfRef.value.pageCount
 }
 function rotate() {
     pwidth.value = window.innerWidth
@@ -83,8 +79,8 @@ onMounted(() => {
 <template>
     <div>
         <div v-if="pwidth > pheight" class="hmode">
-            <vue-pdf-embed :source="pfile"
-                :page="page" :height="pheight-hmargin"/>
+            <vue-pdf-embed ref="pdfRef" :source="pfile"
+                :page="page" :height="pheight-hmargin" @rendered="pdfRendered"/>
             <div align="center">
                 <div class="rbtns">
                     <button class=vbtn @click="page=1">Begin</button>
@@ -101,8 +97,8 @@ onMounted(() => {
             <div class="bbtns">
                 <button class=hbtn @click="page=1">Begin</button>
                 <button class=hbtn @click="page=(page>1)?page-1:page">Prev</button>
-                <button class=hbtn @click="page=(page<pageCount)?page+1:page">Next</button>
-                <button class=hbtn @click="goTelegram">Exit</button>
+                <button class=hbtn @click="page=(page<pages)?page+1:page">Next</button>
+                <button class=hbtn @click="page=pages">End</button>
             </div>
             <p align="center">
                 <button class=ebtn @click="goExit">Exit</button>
@@ -136,6 +132,7 @@ onMounted(() => {
     background: blue;
     color: white;
     width: 100px;
+    height: 40px;
 }
 .hbtn {
     width: 70px;
