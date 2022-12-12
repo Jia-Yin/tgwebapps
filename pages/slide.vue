@@ -88,7 +88,7 @@ onMounted(() => {
                     <button class=vbtn @click="page=(page<pages)?page+1:page">Next</button>
                     <button class=vbtn @click="page=pages">End</button>
                 </div>
-                <button class=ebtn @click="goExit">Exit</button>
+                <button class=ebtn @click="goExit">返回</button>
             </div>
         </div>
         <div v-else class="vmode">
@@ -101,7 +101,7 @@ onMounted(() => {
                 <button class=hbtn @click="page=pages">End</button>
             </div>
             <p align="center">
-                <button class=ebtn @click="goExit">Exit</button>
+                <button class=ebtn @click="goExit">返回</button>
             </p>
         </div>
     </div>
