@@ -68,7 +68,11 @@ onMounted(() => {
     setTimeout(() => {
         window.Telegram.WebApp.ready()
         window.Telegram.WebApp.expand()
-        window.Telegram.WebApp.MainButton.show()
+        if (pwidth.value < pheight.value) {
+            window.Telegram.WebApp.MainButton.show()
+        } else {
+            window.Telegram.WebApp.MainButton.hide()
+        }
         window.Telegram.WebApp.MainButton.setText('返回')
         window.Telegram.WebApp.MainButton.onClick(goExit)
         window.addEventListener("orientationchange", rotate)
@@ -112,7 +116,6 @@ onMounted(() => {
 .vmode {
     height: 500px;
     margin-left: 0px;
-    border: 1px solid green;
 }
 .hmode {
     margin-top: 20px;
