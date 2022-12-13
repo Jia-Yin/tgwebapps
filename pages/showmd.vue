@@ -1,7 +1,7 @@
 <script setup>
 import hljs from 'highlight.js'
 import { marked } from 'marked'
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import 'highlight.js/styles/github.css';
 const route = useRoute()
 
@@ -46,6 +46,33 @@ else {
 }
 
 const output = computed(() => marked(code))
+
+const goExit = (async () => {
+    let url = 'https://api.telegram.org/bot' + tk + '/answerWebAppQuery' //1062787587:AAEZkp7S-QrOPHwRmnTtaWfae_9FwFwu3mQ/answerWebAppQuery'
+    let sid = 'web_app_query_id=' + qid
+    let res = 'result=%7B%22type%22%3A%22article%22%2C%22id%22%3A%22AID%22%2C%22title%22%3A%22Title%22%2C%22input_message_content%22%3A%7B%22message_text%22%3A%22CONTENT%22%7D%7D'
+    res = res.replace('CONTENT', 'RESULT')
+    let all = '?' + sid + '&' + res
+    let myurl = url + all
+    await fetch(myurl)
+})
+
+onMounted(() => {
+    pwidth.value = window.innerWidth
+    pheight.value = window.innerHeight
+    setTimeout(() => {
+        window.Telegram.WebApp.ready()
+        window.Telegram.WebApp.expand()
+        if (pwidth.value < pheight.value) {
+            window.Telegram.WebApp.MainButton.show()
+        } else {
+            window.Telegram.WebApp.MainButton.hide()
+        }
+        window.Telegram.WebApp.MainButton.setText('返回')
+        window.Telegram.WebApp.MainButton.onClick(goExit)
+        window.addEventListener("orientationchange", rotate)
+    }, 500)
+})
 
 </script>
 
